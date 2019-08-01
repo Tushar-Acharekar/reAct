@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router";
 
 class Dataflow extends React.Component {
    constructor(props) {
@@ -25,5 +26,5 @@ class Dataflow extends React.Component {
     );
   }
 }
-export default Dataflow;
+export default withRouter(Dataflow);
 

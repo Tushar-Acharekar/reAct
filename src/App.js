@@ -11,6 +11,8 @@ import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import '@polymer/iron-pages/iron-pages.js';
 import '@polymer/iron-selector/iron-selector.js';
+import { Link, Redirect} from "react-router-dom";
+import { withRouter } from "react-router";
 import Login from './pages/Login.js';
 import View1 from './pages/View1.js';
 import Dataflow from './pages/Dataflow.js';
@@ -22,31 +24,46 @@ class App extends React.Component {
     
       this.state = {
          header: "Note1",
-         content: "Content from state..."
+         content: "Content from state...",
+         routePath: "view404"
       }
    }
+ 
+  componentDidMount(){
+    if (this.props.location.pathname === "/"){this.setState({routePath: 'login'})}
+    if (this.props.location.pathname === "/Login"){this.setState({routePath: 'login'})}
+    if (this.props.location.pathname === "/View1"){this.setState({routePath: 'view1'})}
+    if (this.props.location.pathname === "/DataFlow"){this.setState({routePath: 'dataflow'})}  
+  }
+
+  linkClick1() {this.setState({routePath: "login"})}
+  linkClick2() {this.setState({routePath: "view1"})} 
+  linkClick3(){this.setState({routePath: "dataflow"})}
 
   render() {
+
+    if (this.props.location.pathname == "/"){ return <Redirect to="/Login" /> ;}
+
     return (
       <div className="App">
         <app-header-layout>
           <app-header slot="header" fixed>
               <app-toolbar>
-                <div id ="mainTitle" >Dockify</div>
+                <div id ="mainTitle" >Dockify = {this.state.routePath}</div>
               </app-toolbar>
           </app-header>
 
           <app-drawer-layout id="drawerLayout" fullbleed>
               <app-drawer id="drawer" slot="drawer" swipe-open="[narrow]" on-opened-changed="_forDraweropenedChange" transition-duration="500">
                   <app-toolbar>Menu</app-toolbar>
-                          <iron-selector id="ironSelector" selected='login' attr-for-selected="name" role="navigation">
-                            <a name="login" to="/Login">login</a>
-                            <a name="view1" to="/View1">View1</a>
-                            <a name="dataflow" to="/DataFlow">DataFlow</a>
+                          <iron-selector id="ironSelector" selected={this.state.routePath} attr-for-selected="name" role="navigation">
+                            <Link name="login" to="/Login" onClick={() => this.linkClick1()}>login</Link>
+                            <Link name="view1" to="/View1" onClick={() => this.linkClick2()}>View1</Link>
+                            <Link name="dataflow" to="/DataFlow" onClick={() => this.linkClick3()}>DataFlow</Link>
                           </iron-selector>              
               </app-drawer>
               <iron-pages 
-                  selected='login'
+                  selected={this.state.routePath}
                   attr-for-selected="name"
                   fallback-selection="view404"
                   role="main">
@@ -62,6 +79,6 @@ class App extends React.Component {
     );
   }
 }
-export default App;
+export default withRouter(App);
 
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router";
 
 
 class View404 extends React.Component {
@@ -26,5 +27,5 @@ class View404 extends React.Component {
     );
   }
 }
-export default View404;
+export default withRouter(View404);
 
