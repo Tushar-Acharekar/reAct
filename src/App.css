@@ -1,0 +1,77 @@
+.App{
+      display: flex;
+      min-height: 100vh;
+      background-color: #eeeeee;
+}
+
+.loginPaperCard{
+    min-height: 400px;
+    width: 350px;
+    margin: 0px auto;
+    padding: 18px;
+}
+
+.wrapperCard{
+    width: 100%;
+    display: flex;
+    align-self: center;  
+}
+
+.card-actions{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 14px;  
+        border-top: 0px solid #e8e8e8; 
+}
+
+#quickstart-sign-in{
+background-color: #e0e0e0;
+}
+
+      app-header {
+        color: #fff;
+        background-color: #2845e3;
+    left: 0px !important;
+    right: 0px !important;        
+      }
+
+      #ironSelector a {
+        display: block;
+        padding: 0 16px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+        line-height: 50px;
+        outline-color: #ff000000;
+      }
+
+      #ironSelector iron-icon{
+         margin-right: 10px;
+         color:#6d6d6d;
+      }
+      
+      #ironSelector a.iron-selected iron-icon{
+        color:white;
+      }
+      
+      #ironSelector a.iron-selected {
+        color: black;
+        background-color: darksalmon;
+        color: white ;  
+      }      
+
+       iron-pages{
+        margin-top: 64px;
+        display: flex;
+        height: 90vh;
+      }     
+
+
+      #drawerLayout{
+      width: 100vw;  
+      }
+
+        iron-pages > *{
+          background-color: #fce8b2;
+          width: 100%;
+
+        }
