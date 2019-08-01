@@ -1,5 +1,6 @@
 import React from 'react';
 import Dataflow from './Dataflow.js';
+import { withRouter } from "react-router";
 
 
 class Login extends React.Component {
@@ -21,4 +22,4 @@ class Login extends React.Component {
       );
     }
 }
-export default Login;
+export default withRouter(Login);

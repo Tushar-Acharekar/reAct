@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from "react-router";
 
 class View1 extends React.Component {
    constructor(props) {
@@ -18,5 +19,5 @@ class View1 extends React.Component {
       );
     }
 }
-export default View1;
+export default withRouter(View1);
 
