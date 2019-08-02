@@ -87,7 +87,7 @@ class App extends React.Component {
                   fallback-selection="view404"
                   role="main">
                     <Login name="login"></Login>
-                    <View1 name="view1"></View1>
+                    <View1 name="view1" refershactivestate={this.state.routePath}></View1>
                     <Dataflow name="dataflow"></Dataflow>
                     <View404 name="view404"></View404>
               </iron-pages>            
@@ -95,7 +95,7 @@ class App extends React.Component {
           <app-header slot="header" fixed>
               <app-toolbar>
                 <paper-icon-button id="menuIcon" icon="my-icons:menu" onClick={(e) => this._drawerToggleClick(e)}></paper-icon-button>
-                <div id ="mainTitle" >{this.state.routePath} + {this.state.narrow}</div>
+                <div id ="mainTitle" >{this.state.routePath}</div>
               </app-toolbar>
           </app-header>            
         </app-header-layout>      
