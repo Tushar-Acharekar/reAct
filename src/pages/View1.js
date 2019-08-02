@@ -14,7 +14,8 @@ class View1 extends React.Component {
   render() {
     return (
       <div className="View1" name="view1">
-           <div>This is View1 Page </div>
+           <div>This is View1 Page</div>
+           <div>Data from parent => <b>{this.props.refershactivestate}</b></div>
       </div>
       );
     }
