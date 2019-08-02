@@ -11,17 +11,23 @@ class Dataflow extends React.Component {
       }      
    }
 
-   somefn = () => {
-    console.log('test...!')
+   somefn = (childData) => {
+    try{
+      this.props.myCallbackFromParent(childData);
+    }
+    catch(e){
+      alert("dataFlow_withinChild = " + childData)
+    }
+    
    }   
 
   render() {
   return (
     <div className="Dataflow" name="dataflow">
          <div>This is DataFlow Page</div>
-         <div><a onClick={() => this.somefn()}>Link 1</a></div>
-         <div><a onClick={() => this.somefn()}>Link 2</a></div>
-         <div><a onClick={() => this.somefn()}>Link 3</a></div>
+         <div><a onClick={() => this.somefn('link1')}>Link 1</a></div>
+         <div><a onClick={() => this.somefn('link2')}>Link 2</a></div>
+         <div><a onClick={() => this.somefn('link3')}>Link 3</a></div>
     </div>
     );
   }
