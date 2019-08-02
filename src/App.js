@@ -11,6 +11,10 @@ import '@polymer/app-layout/app-scroll-effects/app-scroll-effects.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import '@polymer/iron-pages/iron-pages.js';
 import '@polymer/iron-selector/iron-selector.js';
+import '@polymer/iron-icon/iron-icon.js';
+import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import './my-icons.js';
 import { Link, Redirect} from "react-router-dom";
 import { withRouter } from "react-router";
 import Login from './pages/Login.js';
@@ -36,9 +40,30 @@ class App extends React.Component {
     if (this.props.location.pathname === "/DataFlow"){this.setState({routePath: 'dataflow'})}  
   }
 
-  linkClick1() {this.setState({routePath: "login"})}
-  linkClick2() {this.setState({routePath: "view1"})} 
-  linkClick3(){this.setState({routePath: "dataflow"})}
+  linkClick1(){
+    this.setState({routePath: "login"})
+    this._drawerTogglePersistent()
+  }
+  linkClick2(){
+    this.setState({routePath: "view1"})
+    this._drawerTogglePersistent()
+  } 
+  linkClick3(){
+    this.setState({routePath: "dataflow"})
+    this._drawerTogglePersistent()
+  }
+
+  _drawerToggleClick(e){
+    console.log(e.target)
+    console.log(this.paperIconBtn)
+    this.appDrawer.toggle();
+  } 
+  
+  _drawerTogglePersistent(){
+    if (!this.appDrawer.persistent){
+      this.appDrawer.close();
+    }    
+  }   
 
   render() {
 
@@ -47,14 +72,8 @@ class App extends React.Component {
     return (
       <div className="App">
         <app-header-layout>
-          <app-header slot="header" fixed>
-              <app-toolbar>
-                <div id ="mainTitle" >Dockify = {this.state.routePath}</div>
-              </app-toolbar>
-          </app-header>
-
           <app-drawer-layout id="drawerLayout" fullbleed>
-              <app-drawer id="drawer" slot="drawer" swipe-open="[narrow]" on-opened-changed="_forDraweropenedChange" transition-duration="500">
+              <app-drawer id="drawer" ref={(appDrawer) => {this.appDrawer = appDrawer;}} slot="drawer" swipe-open="[narrow]" on-opened-changed="_forDraweropenedChange" transition-duration="500">
                   <app-toolbar>Menu</app-toolbar>
                           <iron-selector id="ironSelector" selected={this.state.routePath} attr-for-selected="name" role="navigation">
                             <Link name="login" to="/Login" onClick={() => this.linkClick1()}>login</Link>
@@ -72,7 +91,13 @@ class App extends React.Component {
                     <Dataflow name="dataflow"></Dataflow>
                     <View404 name="view404"></View404>
               </iron-pages>            
-          </app-drawer-layout>    
+          </app-drawer-layout>   
+          <app-header slot="header" fixed>
+              <app-toolbar>
+                <paper-icon-button id="menuIcon" icon="my-icons:menu" onClick={(e) => this._drawerToggleClick(e)}></paper-icon-button>
+                <div id ="mainTitle" >{this.state.routePath} + {this.state.narrow}</div>
+              </app-toolbar>
+          </app-header>            
         </app-header-layout>      
 
       </div>
@@ -80,5 +105,3 @@ class App extends React.Component {
   }
 }
 export default withRouter(App);
-
-

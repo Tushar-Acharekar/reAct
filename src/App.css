@@ -75,3 +75,5 @@ background-color: #e0e0e0;
           width: 100%;
 
         }
+
+    app-drawer-layout:not([narrow]) + app-header #menuIcon{display: none;}        
