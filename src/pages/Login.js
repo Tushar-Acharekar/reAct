@@ -11,13 +11,17 @@ class Login extends React.Component {
          header: "Header from state...",
          content: "Content from state...",
       }      
-   }     
+   }
+
+  myCallback = (dataFomchild) => {
+    alert('dataFlow_childToParent = ' + dataFomchild)
+  } 
 
   render() {
     return (
       <div className="Login" name="login">
            <div>This is Login Page </div>
-           <Dataflow></Dataflow>
+           <Dataflow myCallbackFromParent={this.myCallback}></Dataflow>
       </div>
       );
     }
